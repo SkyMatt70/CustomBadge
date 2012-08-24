@@ -11,22 +11,29 @@
  *** License & Copyright ***
  Created by Sascha Marc Paulus www.spaulus.com on 04/2011. Version 2.0
  This tiny class can be used for free in private and commercial applications.
- Please feel free to modify, extend or distribution this class. 
+ Please feel free to modify, extend or distribution this class.
  If you modify it: Please send me your modified version of the class.
  A commercial distribution of this class is not allowed.
  
  I would appreciate if you could refer to my website www.spaulus.com if you use this class.
  
  If you have any questions please feel free to contact me (open@spaulus.com).
+ 
+ Updated 8/22/12 Matthew Schwartz
+ added customBadgeWithString:inView:withLoc:
+ added UIView category [UIView updateBadgeWithString:]
  */
 
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
+#define OFFSET 6.0
+
 @interface CustomBadge : UIView {
 	
 	NSString *badgeText;
+    NSString *quadrant;
 	UIColor *badgeTextColor;
 	UIColor *badgeInsetColor;
 	UIColor *badgeFrameColor;
@@ -36,10 +43,11 @@
 	CGFloat badgeScaleFactor;
 }
 
-@property(nonatomic,retain) NSString *badgeText;
-@property(nonatomic,retain) UIColor *badgeTextColor;
-@property(nonatomic,retain) UIColor *badgeInsetColor;
-@property(nonatomic,retain) UIColor *badgeFrameColor;
+@property(nonatomic,strong) NSString *badgeText;
+@property(nonatomic,strong) NSString *quadrant;
+@property(nonatomic,strong) UIColor *badgeTextColor;
+@property(nonatomic,strong) UIColor *badgeInsetColor;
+@property(nonatomic,strong) UIColor *badgeFrameColor;
 
 @property(nonatomic,readwrite) BOOL badgeFrame;
 @property(nonatomic,readwrite) BOOL badgeShining;
@@ -48,7 +56,12 @@
 @property(nonatomic,readwrite) CGFloat badgeScaleFactor;
 
 + (CustomBadge*) customBadgeWithString:(NSString *)badgeString;
++ (CustomBadge*) customBadgeWithString:(NSString *)badgeString inView:(UIView *)badgeView withLoc:(NSString *)Loc;
 + (CustomBadge*) customBadgeWithString:(NSString *)badgeString withStringColor:(UIColor*)stringColor withInsetColor:(UIColor*)insetColor withBadgeFrame:(BOOL)badgeFrameYesNo withBadgeFrameColor:(UIColor*)frameColor withScale:(CGFloat)scale withShining:(BOOL)shining;
 - (void) autoBadgeSizeWithString:(NSString *)badgeString;
 
+@end
+
+@interface UIView (customBadge)
+-(void) updateBadgeWithString:(NSString *)badgeString;
 @end
