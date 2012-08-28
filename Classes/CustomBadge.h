@@ -22,6 +22,7 @@
  Updated 8/22/12 Matthew Schwartz
  added customBadgeWithString:inView:withLoc:
  added UIView category [UIView updateBadgeWithString:]
+ 
  */
 
 
